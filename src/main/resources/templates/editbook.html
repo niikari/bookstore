@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>Server Programming</title>
+</head>
+<body>
+
+	<h1>Books</h1>
+	
+	<h2>Edit book</h2>
+	
+	<form th:action="@{/editbook/edit/{id}(id=${book.get.id})}" method="get">
+		<input type="text" name="author" th:value="${book.get.author}"/><br>
+		<input type="text" name="title" th:value="${book.get.title}"/><br>
+		<input type="text" name="isbn" th:value="${book.get.isbn}"/><br>
+		<input type="text" name="year" th:value="${book.get.year}"/><br>
+		<input type="submit" value="submit"/>
+	</form>
+
+
+</body>
+</html>
