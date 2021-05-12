@@ -33,7 +33,7 @@ public class BookController {
 	
 	@GetMapping("/addbook")
 	public String addbook(Model model) {
-		// Millään ei onnistunut pudotusvalikon tekeminen...
+		model.addAttribute("book", new Book());
 		model.addAttribute("categories", categoryRepository.findAll());
 		return "addbook";
 	}
