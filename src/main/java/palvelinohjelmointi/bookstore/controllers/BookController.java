@@ -12,7 +12,9 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import palvelinohjelmointi.bookstore.models.Book;
+import palvelinohjelmointi.bookstore.models.Category;
 import palvelinohjelmointi.bookstore.repositories.BookRepository;
+import palvelinohjelmointi.bookstore.repositories.CategoryRepository;
 
 @Controller
 public class BookController {
@@ -20,21 +22,25 @@ public class BookController {
 	@Autowired
 	private BookRepository bookRepository;
 	
+	@Autowired
+	private CategoryRepository categoryRepository;
+	
 	@GetMapping("/booklist")
 	public String index(Model model) {
-		List<Book> books = (List<Book>) bookRepository.findAll();
-		model.addAttribute("books", books);
+		model.addAttribute("books", bookRepository.findAll());
 		return "booklist";
 	}
 	
 	@GetMapping("/addbook")
-	public String addbook() {
-		
+	public String addbook(Model model) {
+		// Millään ei onnistunut pudotusvalikon tekeminen...
+		model.addAttribute("categories", categoryRepository.findAll());
 		return "addbook";
 	}
 	
 	@PostMapping("/addbook")
 	public String addbookForm(@ModelAttribute Book book) {
+		book.setCategory(new Category("action"));
 		this.bookRepository.save(book);
 		return "redirect:/booklist";
 	}

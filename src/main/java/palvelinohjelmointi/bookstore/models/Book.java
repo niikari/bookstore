@@ -12,7 +12,7 @@ public class Book {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private Long id;
+	private Long bookid;
 	private String title, author, isbn;
 	private int year;
 	private double price;
@@ -49,10 +49,10 @@ public class Book {
 				+ "]";
 	}
 	public Long getId() {
-		return id;
+		return bookid;
 	}
-	public void setId(Long id) {
-		this.id = id;
+	public void setId(Long bookid) {
+		this.bookid = bookid;
 	}
 	public String getTitle() {
 		return title;
@@ -84,6 +84,15 @@ public class Book {
 	public void setPrice(double price) {
 		this.price = price;
 	}
+
+	public Category getCategory() {
+		return category;
+	}
+
+	public void setCategory(Category category) {
+		this.category = category;
+	}
 	
+		
 	
 }

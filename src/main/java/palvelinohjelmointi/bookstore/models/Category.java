@@ -15,32 +15,29 @@ public class Category {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private Long id;
+	private Long categoryid;
 	private String name;
 	
 	@OneToMany(cascade=CascadeType.ALL,mappedBy="category")
 	List<Book> books;
 
-	public Category(Long id, String name, List<Book> books) {
+	public Category(String name) {
 		super();
-		this.id = id;
 		this.name = name;
-		this.books = books;
 	}
 	
-	public Category(Long id, String name) {
-		super();
-		this.id = id;
-		this.name = name;
-		this.books = books = new ArrayList<>();
+	public Category() {
+		
 	}
+	
+
 
 	public Long getId() {
-		return id;
+		return categoryid;
 	}
 
-	public void setId(Long id) {
-		this.id = id;
+	public void setId(Long categoryid) {
+		this.categoryid = categoryid;
 	}
 
 	public String getName() {
@@ -57,6 +54,11 @@ public class Category {
 
 	public void setBooks(List<Book> books) {
 		this.books = books;
+	}
+
+	@Override
+	public String toString() {
+		return "Category [categoryid=" + categoryid + ", name=" + name + ", books=" + books + "]";
 	}
 	
 	
