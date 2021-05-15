@@ -31,12 +31,13 @@ public class Category {
 	}
 	
 
+	
 
-	public Long getId() {
+	public Long getCategoryid() {
 		return categoryid;
 	}
 
-	public void setId(Long categoryid) {
+	public void setCategoryid(Long categoryid) {
 		this.categoryid = categoryid;
 	}
 

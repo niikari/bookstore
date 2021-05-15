@@ -6,6 +6,8 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -34,13 +36,19 @@ public class BookController {
 	@GetMapping("/addbook")
 	public String addbook(Model model) {
 		model.addAttribute("book", new Book());
+		model.addAttribute("category", new Category());
 		model.addAttribute("categories", categoryRepository.findAll());
 		return "addbook";
 	}
 	
 	@PostMapping("/addbook")
-	public String addbookForm(@ModelAttribute Book book) {
-		book.setCategory(new Category("action"));
+	public String addbookForm(@Validated Book book, BindingResult bd, Category category) {
+		
+		if (bd.hasErrors()) {
+			return "addbook";
+		}
+		
+		book.setCategory(category);
 		this.bookRepository.save(book);
 		return "redirect:/booklist";
 	}
