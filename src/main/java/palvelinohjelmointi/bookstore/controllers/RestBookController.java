@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import palvelinohjelmointi.bookstore.models.Book;
 import palvelinohjelmointi.bookstore.repositories.BookRepository;
-import palvelinohjelmointi.bookstore.repositories.CategoryRepository;
 
 @RestController
 public class RestBookController {
@@ -32,7 +31,7 @@ public class RestBookController {
 	}
 	
 	@GetMapping("/books/{author}")
-	public List<Book> returnBookByAuthor(@PathVariable(value="author") String author) {
+	public List<Book> returnBooksByAuthor(@PathVariable(value="author") String author) {
 		
 		return this.bookRepository.findByAuthor(author);
 	}

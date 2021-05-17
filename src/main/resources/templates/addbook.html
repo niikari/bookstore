@@ -27,7 +27,7 @@
 			Price: <input type="number" name="price" placeholder="price" />
 		</p>
 
-		<label for="catlist">Department</label>
+		<label for="catlist">Category</label>
 			 <select id="catlist" th:field="*{category}" class="form-control">
        			<option th:each="category: ${categories}" th:value="${category.categoryid}" th:text="${category.name}"></option>
     		</select>

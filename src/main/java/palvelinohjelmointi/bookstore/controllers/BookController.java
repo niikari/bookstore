@@ -62,6 +62,8 @@ public class BookController {
 	@GetMapping("/editbook/{id}")
 	public String editOne(Model model, @PathVariable Long id) {
 		Optional<Book> book = bookRepository.findById(id);
+		model.addAttribute("category", new Category());
+		model.addAttribute("categories", categoryRepository.findAll());
 		model.addAttribute("book", book);
 		return "editbook";
 	}
