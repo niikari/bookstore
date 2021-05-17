@@ -10,6 +10,10 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+
+
 @Entity
 public class Category {
 	
@@ -18,6 +22,7 @@ public class Category {
 	private Long categoryid;
 	private String name;
 	
+	@JsonIgnore
 	@OneToMany(cascade=CascadeType.ALL,mappedBy="category")
 	List<Book> books;
 
