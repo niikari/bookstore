@@ -6,11 +6,14 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import palvelinohjelmointi.bookstore.models.Book;
 import palvelinohjelmointi.bookstore.models.Category;
+import palvelinohjelmointi.bookstore.models.User;
 import palvelinohjelmointi.bookstore.repositories.BookRepository;
 import palvelinohjelmointi.bookstore.repositories.CategoryRepository;
+import palvelinohjelmointi.bookstore.repositories.UserRepository;
 
 @SpringBootApplication
 public class BookstoreApplication {
@@ -20,7 +23,7 @@ public class BookstoreApplication {
 	}
 
 	@Bean
-	public CommandLineRunner studentDemo(BookRepository repository, CategoryRepository categoryRepository) {
+	public CommandLineRunner book(BookRepository repository, CategoryRepository categoryRepository, UserRepository userRepository) {
 		return (args) -> {
 			Book book = new Book("Musta joutsen", "Arja Koriseva", "1234567-9", 1998, 213.50);			
 			Book book2 = new Book("Kulkurin koiranpentu", "Lassie", "1285207-9", 1943, 2456.50);			
@@ -32,6 +35,13 @@ public class BookstoreApplication {
 			book2.setCategory(category2);
 			repository.save(book);
 			repository.save(book2);
+			BCryptPasswordEncoder crypt = new BCryptPasswordEncoder();
+			User user1 = new User("user", crypt.encode("user"), "USER");
+			User user2 = new User("admin", crypt.encode("admin"), "ADMIN");
+			userRepository.save(user1);
+			userRepository.save(user2);
+			System.out.println(user1);
+			System.out.println(user2);
 		};
 	}
 }
