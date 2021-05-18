@@ -46,7 +46,7 @@ public class BookController {
 	public String addbookForm(@Validated Book book, BindingResult bd, Category category) {
 		
 		if (bd.hasErrors()) {
-			return "addbook";
+			return "redirect:/addbook";
 		}
 		
 		book.setCategory(category);

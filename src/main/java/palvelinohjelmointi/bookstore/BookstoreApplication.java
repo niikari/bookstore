@@ -36,12 +36,10 @@ public class BookstoreApplication {
 			repository.save(book);
 			repository.save(book2);
 			BCryptPasswordEncoder crypt = new BCryptPasswordEncoder();
-			User user1 = new User("user", crypt.encode("user"), "USER");
-			User user2 = new User("admin", crypt.encode("admin"), "ADMIN");
+			User user1 = new User("user", crypt.encode("user"), "user@gmail.com", "USER");
+			User user2 = new User("admin", crypt.encode("admin"), "admin@hotmail.com", "ADMIN");
 			userRepository.save(user1);
 			userRepository.save(user2);
-			System.out.println(user1);
-			System.out.println(user2);
 		};
 	}
 }
