@@ -5,5 +5,5 @@ import org.springframework.data.repository.CrudRepository;
 import palvelinohjelmointi.bookstore.models.Category;
 
 public interface CategoryRepository extends CrudRepository<Category, Long> {
-
+	Category findByName(String name);
 }
